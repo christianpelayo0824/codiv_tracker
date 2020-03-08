@@ -34,6 +34,6 @@ public class CODIVCase extends BaseEntity<String> implements Serializable {
     private long recovered;
 
     @Column(name = "published_date")
-    private String publishDate;
+    private String publishedDate;
 
 }

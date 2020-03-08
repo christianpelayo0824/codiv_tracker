@@ -4,13 +4,13 @@ import io.project.virustracker.entity.CODIVCase;
 import io.project.virustracker.fetcher.CODIVCaseComponent;
 import io.project.virustracker.repository.CODIVCaseRepository;
 import io.project.virustracker.service.CODIVCaseService;
+import io.project.virustracker.utility.common.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CODIVCaseServiceImp implements CODIVCaseService {
@@ -47,9 +47,23 @@ public class CODIVCaseServiceImp implements CODIVCaseService {
 
     @Override
     public List<CODIVCase> findCaseByLatestDate() {
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        Calendar cal = Calendar.getInstance();
-        return codivCaseRepository.findByPublishDate("03-06-2020");
+
+        // Check if the current date have data, if empty get the
+        // data of the previous date.
+        int dateCounter = 0;
+        List<CODIVCase> caseList = codivCaseRepository.findByPublishedDate(DateUtil.getCurrentDate());
+
+        while (caseList.isEmpty()) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DATE, dateCounter--);
+            caseList = codivCaseRepository.findByPublishedDate(DateUtil.DATE_FORMAT_YYYY_MM_DD.format(calendar.getTime()));
+        }
+        return caseList;
+    }
+
+    @Override
+    public Map<String, Long> getTotalCased() {
+        return codivCaseRepository.totalCased();
     }
 
 }

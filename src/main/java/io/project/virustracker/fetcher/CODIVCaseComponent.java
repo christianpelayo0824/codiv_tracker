@@ -2,6 +2,7 @@ package io.project.virustracker.fetcher;
 
 import io.project.virustracker.entity.CODIVCase;
 import io.project.virustracker.utility.CommonUtility;
+import io.project.virustracker.utility.common.DateUtil;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Component;
@@ -12,9 +13,10 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -44,7 +46,7 @@ public class CODIVCaseComponent {
      */
     public static Map<String, String> retrieveURLMap(int startDate, int endDate) {
         Map<String, String> urlMap = new HashMap<>();
-        for (String date : CommonUtility.dateInterValParser(startDate, endDate)) {
+        for (String date : DateUtil.dateInterValParser(startDate, endDate)) {
             urlMap.put(date, CommonUtility.CoronaUtil.CORONA_VIRUS_URL.replace("[date]", date));
         }
         return urlMap;
@@ -83,7 +85,7 @@ public class CODIVCaseComponent {
                                 .CSV_HEADER_PROVINCE_AND_STATE));
                         codivCase.setCountry(caseInstance.get(CommonUtility.CoronaUtil
                                 .CSV_HEADER_COUNTRY_AND_REGION));
-                        codivCase.setLastUpdate(CommonUtility.parseDate(caseInstance.get(CommonUtility
+                        codivCase.setLastUpdate(DateUtil.parseDate(caseInstance.get(CommonUtility
                                 .CoronaUtil.CSV_HEADER_LAST_UPDATE)));
                         codivCase.setConfirmed(Long.parseLong(caseInstance.get(CommonUtility.CoronaUtil
                                 .CSV_HEADER_CONFIRMED)));
@@ -91,7 +93,7 @@ public class CODIVCaseComponent {
                                 .CSV_HEADER_DEATHS)));
                         codivCase.setRecovered(Long.parseLong(caseInstance.get(CommonUtility.CoronaUtil
                                 .CSV_HEADER_RECOVERED)));
-                        codivCase.setPublishDate(urlList.getKey());
+                        codivCase.setPublishedDate(DateUtil.formatStringDate(urlList.getKey(), DateUtil.FORMAT_YYYY_MM_DD));
                         CODIVCaseList.add(codivCase);
                     }
                 }

@@ -1,4 +1,4 @@
-package io.project.virustracker.fetcher;
+package io.project.virustracker.component;
 
 import io.project.virustracker.entity.CODIVCase;
 import io.project.virustracker.utility.CommonUtility;

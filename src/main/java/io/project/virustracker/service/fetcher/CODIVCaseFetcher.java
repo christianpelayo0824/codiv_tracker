@@ -1,7 +1,7 @@
-package io.project.virustracker.service.schedule;
+package io.project.virustracker.service.fetcher;
 
 import io.project.virustracker.entity.CODIVCase;
-import io.project.virustracker.fetcher.CODIVCaseComponent;
+import io.project.virustracker.component.CODIVCaseComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

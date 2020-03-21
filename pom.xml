@@ -26,6 +26,13 @@
             <version>1.8</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20190722</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -74,7 +81,7 @@
     </dependencies>
 
     <build>
-        <finalName>virus-tracker</finalName>
+        <finalName>codiv-tracker</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

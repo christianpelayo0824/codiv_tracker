@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * This will be the class of all rest-end point that is <br>
+ * that expose the functionality about CODIV Cases.
+ *
+ * @author christian
+ */
 @RestController
 @RequestMapping(path = "/corona")
 public class CODIVCaseResource {

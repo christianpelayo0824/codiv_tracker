@@ -86,4 +86,17 @@ public class DateUtil {
         }
         return dateList;
     }
+
+    /**
+     * Utility function to convert unix time to Date
+     *
+     * @param epochTime - long epoch time
+     * @return String
+     */
+    public static String epochTimeToDate(long epochTime) {
+        Date date = new Date(epochTime);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FORMAT_TIME_FORMAT_TEMPLATE);
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT-4"));
+        return simpleDateFormat.format(date);
+    }
 }

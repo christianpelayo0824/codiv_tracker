@@ -1,7 +1,7 @@
 package io.project.virustracker.service.implementation;
 
 import io.project.virustracker.entity.CODIVCase;
-import io.project.virustracker.fetcher.CODIVCaseComponent;
+import io.project.virustracker.component.CODIVCaseComponent;
 import io.project.virustracker.repository.CODIVCaseRepository;
 import io.project.virustracker.service.CODIVCaseService;
 import io.project.virustracker.utility.common.DateUtil;

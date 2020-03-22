@@ -1,18 +1,18 @@
 package io.project.virustracker.service.fetcher;
 
-import io.project.virustracker.entity.CODIVCase;
-import io.project.virustracker.component.CODIVCaseComponent;
+import io.project.virustracker.entity.COVIDCase;
+import io.project.virustracker.component.COVIDCaseComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CODIVCaseFetcher {
+public class COVIDCaseFetcher {
 
-    private CODIVCaseComponent codivCaseComponent;
+    private COVIDCaseComponent COVIDCaseComponent;
 
     @Autowired
-    public void setCodivCaseComponent(CODIVCaseComponent codivCaseComponent) {
-        this.codivCaseComponent = codivCaseComponent;
+    public void setCOVIDCaseComponent(COVIDCaseComponent COVIDCaseComponent) {
+        this.COVIDCaseComponent = COVIDCaseComponent;
     }
 
     /**
@@ -28,9 +28,9 @@ public class CODIVCaseFetcher {
     public void fetchData() {
         int START_DATE = -2;
         int END_DATE = -2;
-        if (codivCaseComponent.fetchCoronaVirusCase(START_DATE, END_DATE).size() != 0) {
-            for (CODIVCase codivCase : codivCaseComponent.fetchCoronaVirusCase(START_DATE, END_DATE)) {
-                System.out.println("Data Fetch" + codivCase.getLastUpdate());
+        if (COVIDCaseComponent.fetchCoronaVirusCase(START_DATE, END_DATE).size() != 0) {
+            for (COVIDCase COVIDCase : COVIDCaseComponent.fetchCoronaVirusCase(START_DATE, END_DATE)) {
+                System.out.println("Data Fetch" + COVIDCase.getLastUpdate());
             }
         } else {
             System.out.println("No data for this time");

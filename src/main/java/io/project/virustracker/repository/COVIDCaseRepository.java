@@ -1,6 +1,6 @@
 package io.project.virustracker.repository;
 
-import io.project.virustracker.entity.CODIVCase;
+import io.project.virustracker.entity.COVIDCase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public interface CODIVCaseRepository extends JpaRepository<CODIVCase, Long> {
+public interface COVIDCaseRepository extends JpaRepository<COVIDCase, Long> {
 
     /**
      * This function retrieve list of CoronaCase object <br>
@@ -19,13 +19,13 @@ public interface CODIVCaseRepository extends JpaRepository<CODIVCase, Long> {
      * @param date yyyy-MM-dd
      * @return List<CoronaCase>
      */
-    List<CODIVCase> findByPublishedDate(String date);
+    List<COVIDCase> findByPublishedDate(String date);
 
     @Query(nativeQuery = true,
             value = "SELECT SUM(confirmed) confirmed," +
                     "SUM(deaths) deaths," +
                     "SUM(recovered) recovered" +
-                    " FROM codivcase")
+                    " FROM covidcase")
     Map<String, Long> totalCased();
 
 }

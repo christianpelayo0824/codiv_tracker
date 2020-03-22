@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
-public class CODIVCase extends BaseEntity<String> implements Serializable {
+public class COVIDCase extends BaseEntity<String> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

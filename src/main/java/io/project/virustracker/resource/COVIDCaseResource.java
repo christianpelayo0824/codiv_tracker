@@ -1,8 +1,8 @@
 package io.project.virustracker.resource;
 
 
-import io.project.virustracker.entity.CODIVCase;
-import io.project.virustracker.service.CODIVCaseService;
+import io.project.virustracker.entity.COVIDCase;
+import io.project.virustracker.service.COVIDCaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,19 +16,19 @@ import java.util.List;
 
 /**
  * This will be the class of all rest-end point that is <br>
- * that expose the functionality about CODIV Cases.
+ * that expose the functionality about COVID Cases.
  *
  * @author christian
  */
 @RestController
 @RequestMapping(path = "/corona")
-public class CODIVCaseResource {
+public class COVIDCaseResource {
 
-    CODIVCaseService codivCaseService;
+    COVIDCaseService COVIDCaseService;
 
     @Autowired
-    public void setCodivCaseService(CODIVCaseService codivCaseService) {
-        this.codivCaseService = codivCaseService;
+    public void setCOVIDCaseService(COVIDCaseService COVIDCaseService) {
+        this.COVIDCaseService = COVIDCaseService;
     }
 
     /**
@@ -42,25 +42,25 @@ public class CODIVCaseResource {
     @GetMapping(path = "/fetchHistoricalData/{startDate}/{endDate}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> fetchHistoricalData(@PathVariable("startDate") int startDate,
                                                  @PathVariable("endDate") int endDate) {
-        return new ResponseEntity<>(codivCaseService.writeCoronaCaseList(startDate, endDate), HttpStatus.OK);
+        return new ResponseEntity<>(COVIDCaseService.writeCoronaCaseList(startDate, endDate), HttpStatus.OK);
     }
 
     /**
      * This rest end point handle for retrieving <br>
      * latest data from the database. This will <br>
-     * return a list of CODIVCase Object in a json <br>
+     * return a list of COVIDCase Object in a json <br>
      * form.
      *
      * @return ResponseEntity<Long>
      */
     @GetMapping(path = "/coronaCaseLatest", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<CODIVCase>> getCoronaCaseList() {
-        return new ResponseEntity<>(codivCaseService.findCaseByLatestDate(), HttpStatus.OK);
+    public ResponseEntity<List<COVIDCase>> getCoronaCaseList() {
+        return new ResponseEntity<>(COVIDCaseService.findCaseByLatestDate(), HttpStatus.OK);
     }
 
     /**
      * This rest end point will return the total <br>
-     * cases of CODIV Virus.
+     * cases of COVID Virus.
      * 1. CONFIRMED
      * 2. DEATH
      * 3. RECOVERED
@@ -69,6 +69,6 @@ public class CODIVCaseResource {
      */
     @GetMapping(path = "/totalCase", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> totalCase() {
-        return new ResponseEntity<>(codivCaseService.getTotalCased(), HttpStatus.OK);
+        return new ResponseEntity<>(COVIDCaseService.getTotalCased(), HttpStatus.OK);
     }
 }

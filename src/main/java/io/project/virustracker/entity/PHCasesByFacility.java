@@ -2,17 +2,15 @@ package io.project.virustracker.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
-public class PHCasesByFacility {
+public class PHCasesByFacility extends BaseEntity<String> implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private long fid;
     private int age;

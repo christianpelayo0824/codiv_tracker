@@ -1,17 +1,17 @@
 package io.project.virustracker.service;
 
-import io.project.virustracker.entity.CODIVCase;
+import io.project.virustracker.entity.COVIDCase;
 
 import java.util.List;
 import java.util.Map;
 
-public interface CODIVCaseService {
+public interface COVIDCaseService {
 
     boolean writeCoronaCaseList(int startDate, int endDate);
 
-    List<CODIVCase> getCoronaCaseList();
+    List<COVIDCase> getCoronaCaseList();
 
-    List<CODIVCase> findCaseByLatestDate();
+    List<COVIDCase> findCaseByLatestDate();
 
     Map<String, Long> getTotalCased();
 }

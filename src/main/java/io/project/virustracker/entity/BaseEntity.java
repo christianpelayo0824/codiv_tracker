@@ -21,14 +21,28 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity<T> {
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    @CreatedDate
-    @Column(name = "created_at")
-    private Date createdAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+//
+//    @CreatedDate
+//    @Temporal(TemporalType.DATE)
+//    @Column(name = "created_at")
+//    private Date createdAt;
+//
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @LastModifiedDate
+//    @Column(name = "updated_at")
+//    private Date updatedAt;
+
+    @CreatedDate
+    @Temporal(TemporalType.DATE)
+    Date publicationDate;
+
+    @CreatedDate
+    @Temporal(TemporalType.TIME)
+    Date publicationTime;
+
     @LastModifiedDate
-    @Column(name = "updated_at")
-    private Date updatedAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    Date creationDateTime;
 }

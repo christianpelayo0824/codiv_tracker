@@ -96,7 +96,8 @@ public class DateUtil {
     public static String epochTimeToDate(long epochTime) {
         Date date = new Date(epochTime);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FORMAT_TIME_FORMAT_TEMPLATE);
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT-4"));
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         return simpleDateFormat.format(date);
     }
+
 }

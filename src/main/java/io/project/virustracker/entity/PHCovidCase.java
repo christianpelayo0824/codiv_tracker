@@ -11,10 +11,10 @@ import java.io.Serializable;
 
 @Data
 @Entity
-public class PHCodivCase extends BaseEntity<String> implements Serializable {
+public class PHCovidCase extends BaseEntity<String> implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String day;
     private long confirmed;

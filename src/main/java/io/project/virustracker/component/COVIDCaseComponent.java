@@ -1,6 +1,6 @@
 package io.project.virustracker.component;
 
-import io.project.virustracker.entity.CODIVCase;
+import io.project.virustracker.entity.COVIDCase;
 import io.project.virustracker.utility.CommonUtility;
 import io.project.virustracker.utility.common.DateUtil;
 import org.apache.commons.csv.CSVFormat;
@@ -30,7 +30,7 @@ import java.util.Map;
  * @author Christian Pelayo. 02 Feb 2020
  */
 @Component
-public class CODIVCaseComponent {
+public class COVIDCaseComponent {
 
 
     /**
@@ -64,10 +64,10 @@ public class CODIVCaseComponent {
      *                  four previous date.
      * @return List<CoronaCase>
      */
-    public List<CODIVCase> fetchCoronaVirusCase(int startDate, int endDate) {
+    public List<COVIDCase> fetchCoronaVirusCase(int startDate, int endDate) {
         try {
-            List<CODIVCase> CODIVCaseList = new ArrayList<>();
-            Map<String, String> urlMap = CODIVCaseComponent.retrieveURLMap(startDate, endDate);
+            List<COVIDCase> COVIDCaseList = new ArrayList<>();
+            Map<String, String> urlMap = COVIDCaseComponent.retrieveURLMap(startDate, endDate);
             for (Map.Entry<String, String> urlList : urlMap.entrySet()) {
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest request = HttpRequest.newBuilder()
@@ -80,25 +80,25 @@ public class CODIVCaseComponent {
                     StringReader reader = new StringReader(response.body());
                     Iterable<CSVRecord> coronaCases = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader);
                     for (CSVRecord caseInstance : coronaCases) {
-                        CODIVCase codivCase = new CODIVCase();
-                        codivCase.setProvince(caseInstance.get(CommonUtility.CoronaUtil
+                        COVIDCase COVIDCase = new COVIDCase();
+                        COVIDCase.setProvince(caseInstance.get(CommonUtility.CoronaUtil
                                 .CSV_HEADER_PROVINCE_AND_STATE));
-                        codivCase.setCountry(caseInstance.get(CommonUtility.CoronaUtil
+                        COVIDCase.setCountry(caseInstance.get(CommonUtility.CoronaUtil
                                 .CSV_HEADER_COUNTRY_AND_REGION));
-                        codivCase.setLastUpdate(DateUtil.parseDate(caseInstance.get(CommonUtility
+                        COVIDCase.setLastUpdate(DateUtil.parseDate(caseInstance.get(CommonUtility
                                 .CoronaUtil.CSV_HEADER_LAST_UPDATE)));
-                        codivCase.setConfirmed(Long.parseLong(caseInstance.get(CommonUtility.CoronaUtil
+                        COVIDCase.setConfirmed(Long.parseLong(caseInstance.get(CommonUtility.CoronaUtil
                                 .CSV_HEADER_CONFIRMED)));
-                        codivCase.setDeaths(Long.parseLong(caseInstance.get(CommonUtility.CoronaUtil
+                        COVIDCase.setDeaths(Long.parseLong(caseInstance.get(CommonUtility.CoronaUtil
                                 .CSV_HEADER_DEATHS)));
-                        codivCase.setRecovered(Long.parseLong(caseInstance.get(CommonUtility.CoronaUtil
+                        COVIDCase.setRecovered(Long.parseLong(caseInstance.get(CommonUtility.CoronaUtil
                                 .CSV_HEADER_RECOVERED)));
-                        codivCase.setPublishedDate(DateUtil.formatStringDate(urlList.getKey(), DateUtil.FORMAT_YYYY_MM_DD));
-                        CODIVCaseList.add(codivCase);
+                        COVIDCase.setPublishedDate(DateUtil.formatStringDate(urlList.getKey(), DateUtil.FORMAT_YYYY_MM_DD));
+                        COVIDCaseList.add(COVIDCase);
                     }
                 }
             }
-            return CODIVCaseList;
+            return COVIDCaseList;
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
